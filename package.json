@@ -1,0 +1,11 @@
+{
+  "name": "company-metrics-compare",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Compare key financial metrics across up to three stock tickers",
+  "scripts": {
+    "dev": "echo \"Backend not yet implemented — coming in phase 1\" && exit 1"
+  },
+  "keywords": ["stocks", "finance", "comparison"],
+  "license": "MIT"
+}
