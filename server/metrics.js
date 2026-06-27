@@ -50,7 +50,7 @@ function quarterLabel(row) {
 
 /**
  * Pick the next fiscal-year EPS estimate on or after today.
- * @param {Array<{ date?: string, estimatedEpsAvg?: number, estimatedEps?: number }>} estimates
+ * @param {Array<{ date?: string, epsAvg?: number, estimatedEpsAvg?: number, estimatedEps?: number }>} estimates
  */
 function pickForwardEpsEstimate(estimates) {
   if (!Array.isArray(estimates) || estimates.length === 0) return null;
@@ -61,7 +61,7 @@ function pickForwardEpsEstimate(estimates) {
     .sort((a, b) => (a.date || '').localeCompare(b.date || ''));
 
   const row = future[0] || estimates[0];
-  const eps = row.estimatedEpsAvg ?? row.estimatedEps;
+  const eps = row.epsAvg ?? row.estimatedEpsAvg ?? row.estimatedEps;
   if (eps == null || eps <= 0) return null;
 
   return { eps, fiscalYearEnd: row.date };
@@ -74,11 +74,11 @@ export async function fetchCompanyMetrics(symbol) {
   const ticker = symbol.toUpperCase();
 
   const [quoteRows, incomeRows, cashFlowRows, ratioRows, estimateRows] = await Promise.all([
-    fmpFetch(`/quote/${ticker}`),
-    fmpFetch(`/income-statement/${ticker}`, { period: 'quarter', limit: 1 }),
-    fmpFetch(`/cash-flow-statement/${ticker}`, { period: 'quarter', limit: 1 }),
-    fmpFetch(`/ratios-ttm/${ticker}`),
-    fmpFetch(`/analyst-estimates/${ticker}`, { period: 'annual', limit: 8 }),
+    fmpFetch('/quote', { symbol: ticker }),
+    fmpFetch('/income-statement', { symbol: ticker, period: 'quarter', limit: 1 }),
+    fmpFetch('/cash-flow-statement', { symbol: ticker, period: 'quarter', limit: 1 }),
+    fmpFetch('/ratios-ttm', { symbol: ticker }),
+    fmpFetch('/analyst-estimates', { symbol: ticker, period: 'annual', limit: 8 }),
   ]);
 
   const quote = Array.isArray(quoteRows) ? quoteRows[0] : null;

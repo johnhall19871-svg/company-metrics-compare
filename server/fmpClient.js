@@ -1,4 +1,4 @@
-const FMP_BASE = 'https://financialmodelingprep.com/api/v3';
+const FMP_BASE = 'https://financialmodelingprep.com/stable';
 const CACHE_TTL_MS = 15 * 60 * 1000;
 
 /** @type {Map<string, { expires: number, data: unknown }>} */
@@ -15,12 +15,16 @@ function getApiKey() {
 }
 
 /**
- * @param {string} path - e.g. "/quote/AAPL"
+ * @param {string} path - e.g. "/quote"
  * @param {Record<string, string | number>} [params]
  */
 export async function fmpFetch(path, params = {}) {
   const apiKey = getApiKey();
-  const search = new URLSearchParams({ ...params, apikey: apiKey });
+  const search = new URLSearchParams(
+    Object.fromEntries(
+      Object.entries({ ...params, apikey: apiKey }).map(([k, v]) => [k, String(v)])
+    )
+  );
   const url = `${FMP_BASE}${path}?${search}`;
 
   const cached = cache.get(url);
