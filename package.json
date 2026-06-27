@@ -2,10 +2,19 @@
   "name": "company-metrics-compare",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "Compare key financial metrics across up to three stock tickers",
   "scripts": {
-    "dev": "echo \"Backend not yet implemented — coming in phase 1\" && exit 1"
+    "dev": "node server/index.js",
+    "start": "node server/index.js"
   },
   "keywords": ["stocks", "finance", "comparison"],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
 }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Metrics Compare</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div>
+          <p class="eyebrow">Phase 1</p>
+          <h1>Company Metrics Compare</h1>
+          <p class="subtitle">
+            Enter up to three US stock tickers to compare key financial metrics side by side.
+          </p>
+        </div>
+      </header>
+
+      <section class="card inputs-card">
+        <form id="compare-form" class="ticker-form">
+          <label class="field">
+            <span>Company 1</span>
+            <input type="text" id="ticker-1" placeholder="TSLA" autocomplete="off" spellcheck="false" />
+          </label>
+          <label class="field">
+            <span>Company 2</span>
+            <input type="text" id="ticker-2" placeholder="AAPL" autocomplete="off" spellcheck="false" />
+          </label>
+          <label class="field">
+            <span>Company 3</span>
+            <input type="text" id="ticker-3" placeholder="MSFT" autocomplete="off" spellcheck="false" />
+          </label>
+          <button type="submit" id="compare-btn">Compare</button>
+        </form>
+        <p id="status" class="status" aria-live="polite"></p>
+      </section>
+
+      <section id="results" class="results hidden" aria-live="polite"></section>
+
+      <footer class="footer">
+        <p>
+          Data sourced from SEC filings and analyst estimates via Financial Modeling Prep.
+          For informational purposes only — not investment advice.
+        </p>
+      </footer>
+    </div>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

@@ -15,21 +15,28 @@ A web app for comparing key financial metrics across up to three public companie
 
 ## Project status
 
-**Phase 1 — in progress:** repository and GitHub setup complete; app implementation coming next.
+**Phase 1 — complete:** compare up to 3 tickers for forward P/E, gross margin, net margin, P/S, and stock-based compensation.
+
+## Requirements
+
+- [Node.js 18+](https://nodejs.org/) (includes npm)
+- Free [Financial Modeling Prep](https://financialmodelingprep.com/developer/docs) API key
 
 ## Quick start
 
 ```bash
-# 1. Install dependencies (once backend is added)
+# 1. Install dependencies
 npm install
 
-# 2. Configure API key
-cp .env.example .env
-# Edit .env and add your FMP_API_KEY
+# 2. Configure API key (free at https://financialmodelingprep.com/developer/docs)
+copy .env.example .env
+# Edit .env and set FMP_API_KEY=your_key
 
-# 3. Run the dev server (once implemented)
+# 3. Run the app
 npm run dev
 ```
+
+Open **http://localhost:3001** in your browser, enter tickers (e.g. TSLA, AAPL, MSFT), and click **Compare**.
 
 ## Git workflow
 
